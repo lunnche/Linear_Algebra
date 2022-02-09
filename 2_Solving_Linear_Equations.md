@@ -248,4 +248,149 @@ Basic question:**What does it mean to "multiply A times x"?** 可以用行来乘
 
 ![image-20220206161441333](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220206161441333.png)
 
+光看上面两个图，可能无法触发恍然大明白，来看一个栗子🌰  
+$$
+\left[
+\begin{matrix}
+1&& 2&&3\\
+2&&5&&2\\
+6&&-3&&1
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+0\\
+0\\
+2
+\end{matrix}
+\right]=2\ times\ column\ 3=
+\left[
+\begin{matrix}
+6\\
+4\\
+2
+\end{matrix}
+\right].
+$$
+看到没，最后结果直接理解成2乘以第三列
 
+再来各栗子🌰
+$$
+Ax=
+\left[
+\begin{matrix}
+1&&0&&0\\
+1&&0&&0\\
+1&&0&&0
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+4\\
+5\\
+6
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+4\\
+4\\
+4
+\end{matrix}
+\right]
+$$
+
+如果你是“行”人，你看到的就是点乘（1，0，0）和（4，5，6）得到4.如果你是个“列”人，Ax的线性组合就是4乘以第一列（1，1，1），因为第二列，第三类都是0.  
+
+***
+**identity matrix**
+$$
+I=
+\left[
+\begin{matrix}
+1&&0&&0\\
+0&&1&&0\\
+0&&0&&1
+\end{matrix}
+\right]
+$$
+![image-20220209143253305](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209143253305.png)
+
+
+
+I is special.It has ones on the "main diagonal".Whatever vector this matrix multiplies,that vector is not changed.This is like multiplication by 1,but for matrices and vectors.The exceptional matrix in this example is the 3 by 3 **identity matrix**
+
+
+***
+
+## Matrix Notation
+
+矩阵元素的记法：
+
+​    ![image-20220209143459125](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209143459125.png)
+
+## Multiplication in MATLAB
+咋输入呢？
+Enter matrices a row at a time, and use a semicolon to signal the end of a row.Or enter by columns and transpose by `'`:
+$$
+A=[1\ 2\ 3;\ 2\ 5\ 2;\ 6\ -3\ 1]\\
+x=[0\ 0\ 2]'\ \ or\ \ x=[0;0;2]
+$$
+
+在matlab里，矩阵乘法有三种表示方法：  
+第一种：
+$$
+Matrix\ multiplication\ \ b=A*x
+$$
+第二种：
+We can also pick out the first row of A (as a smaller matrix).The notation for that 3 by 3 submatrix is A(1,:).**Here the colon symbol:keeps all columns of row 1.**  
+$$
+Row\ at\ a\ time\ \ b=[A(1,:)*x;A(2,:)*x;A(3,:)*x]
+$$
+
+第三种：
+$$
+Column\ at\ a\ time\ \ b=A(:,1)*x(1)+A(:,2)*x(2)+A(:,3)*x(3)
+$$
+
+注意：matrices are stored by columns.Then multiplying a column at a time will be a little faster.So A*x is actually executed by columns.  
+
+## Programming Languages for Mathematics and Statistics  
+Julia,Python,R,Mathematica,Maple  
+
+## review of the key ideas  
+1. The basic operations on vectors are multiplication cv and vector additon v+w.
+2. Together those operations give linear combinations cv+dw.
+3. Matrix-vector multiplication Ax can be computed by dot products, a row at a time. But Ax must be understood as a combination of the columns of A.
+4. Column picture: Ax=b asks for a combination of columns to produce b.  
+5. Row picture: Each equation in Ax=b gives a line(n=2) or a plane (n=3) or a "hyperplane"(n>3).They intersect at the solution or solutions,if any.  
+
+来个栗子🌰
+
+![image-20220209152403217](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209152403217.png)
+
+![image-20220209152823146](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209152823146.png)
+
+## 2.2 The Idea of Elimination  
+
+![image-20220209152918687](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209152918687.png)
+
+![image-20220209153704536](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209153704536.png)
+
+**Elimination produce an upper triangular system**  
+The nonzero coefficients 1,-2,8 form a triangle.That system is solved from the bottom upwards- first y=1 and then x=3.This quick process is called **back substitution** It is used for upper triangular systems of any size, after elimination gives a triangle.  
+
+重要的一点：The original equations have the same solution x=3 and y=1.下图shows each system as a pair of lines,intersecting at the solution point(3,1).After elimination,the lines still meet at the same point.
+
+![image-20220209162453980](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209162453980.png)
+
+How did we get from the first pair of lines to the second pair?  
+**To eliminate x: Subtract a multiple of equation 1 from equation 2.**  
+
+啥玩意交pivot？主元  
+就是第一行方程中x的系数(the coefficient of x).
+
+![image-20220209163555096](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209163555096.png)
+
+到47页了
