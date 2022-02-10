@@ -488,3 +488,133 @@ okkkk，到这三个栗子完了，总结下：
 Gaussian elimination  
 
 到50页了
+
+To understand Gaussian elimination,you have to go beyond 2 by 2 systems.Three by Three is enough to see the patten.For now th ematrices are square - an equal number of rows and columns.Here is 3 by 3 system,specially constructed so that all elimination steps lead to whole numbers and not fractions:  
+$$
+\begin{aligned}
+2x+4y-2z&=2\\
+4x+9y-3z&=8\\
+-2x-3y+7z&=10
+\end{aligned}
+$$
+
+What are the steps?the first pivot is the 2(upper left).Below that pivot we want to eliminate the 4.The first multiplier is the ratio 4/2 =2. Multiply the pivot equation by $l_{21}$ and subtract.Subtraction removes the 4x from the second equation:
+
+**Step1** Subtract 2 times equation 1 from equation 2.This leaves $y+x=4$.
+We also eliminate -2x from equation 3-still using the first pivot.The quick way is to add equation 1 to equation 3.Then 2x cancles -2x.We do exactly that,but the rule in this book is to **subtract rather than add**.The systematic pattern has multiplier $l_{31}=-2/2=-2$. Subtracting -1 times an equation is the same as adding.  
+
+**Step2** Subtract -1 times equation 1 from equation 3.This leaves y+5z=12.The two new equations involve only y and z. The second pivot is 1:  
+**x is eliminated**
+$$
+\begin{aligned}
+1y+1z&=4\\
+1y+5z&=12
+\end{aligned}
+$$
+We have reached a 2 by 2 system.The final step eliminates y to make it 1 by 1:  
+
+**Step3**  Subtract equation $2_{new}$ from $3_{new}$.The multiplier is 1/1=1.Then 4z=8.The original Ax=b has been converted into an upper triangular $Ux=c$:  
+
+![image-20220210144959946](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210144959946.png)
+
+The goal is achieved -forward elimination is complete from A to U.  
+**Notice the pivots 2,1,4 along the diagonal of U.**
+**The pivots 1 and 4 were hidden in the original system.Elimination brought them out.**  
+Ux=c is ready for **back substitution**,which is quick:  
+$$
+(4z=8\ gives\ z=2)\ (y+z=4\ gives\ y=2)\ (equation\ 1\ gives\ x=-1)
+$$
+The solution is (x,y,z)=(-1,2,2).The row picture has three planes from three equations.All the planes go through this solution.The original planes are sloping,but the last plane 4z=8 after elimination is horizontal.  
+The column picture show a combination Ax of column vectors producing the right side b.The coefficients in that combination are -1,2,2(the solution):
+$$
+Ax=(-1)
+\left[
+\begin{matrix}
+2\\
+4\\
+-2
+\end{matrix}
+\right]
++2
+\left[
+\begin{matrix}
+4\\
+9\\
+-3
+\end{matrix}
+\right]
++2
+\left[
+\begin{matrix}
+-2\\
+-3\\
+7
+\end{matrix}
+\right]
+\ equals\ 
+\left[
+\begin{matrix}
+2\\
+8\\
+10
+\end{matrix}
+\right]=b.
+$$
+
+The numbers x,y,z multiply columns 1,2,3 in Ax=b also in the triangular Ux=c.  
+
+
+For an n by n problem,elimination proceeds in the same way.Here is the whole idea, column by column from A to U,when Gaussian elimination succeeds.  
+
+所以呢总结下n×n矩阵，用消元法的步骤：
+**Column 1. Use the first equation to create zeros below the first pivot.**
+**Column 2.Use the new equation 2 to create zeros below the second pivot.
+**Column 3 to n. Keep going to find all n pivots and the upper triangular U.**  
+
+![image-20220210150811152](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210150811152.png)
+
+The result of forward elimination is an upper triangular system. It is nonsingular if there is a full set of n pivots (never zero!).
+
+## review of the key ideas  
+1. A linear system (Ax=b) becomes **upper triangular**(Ux=c) after elimination.  
+2. We **subtract** $l_{ij}$ times equation j from equation i, to make the (i,j) entry zero.  
+3. The **multiplier** is $l_{ij}=\frac{entry\ to\ eliminate\ in\ row\ i}{pivot\ in\ row\ j}$.**Pivots** can not be zero!  
+4. When zero is in the pivot position,**exchange rows** if there is a nonzero below it.  
+5. The upper triangular Ux=c is solved by **back substitution**(starting at the bottom).  
+6. When **breakdown** is permanent,Ax=b has no solution or infinitely many.  
+
+$$
+A=
+\left[
+\begin{matrix}
+1&&1&&0\\
+1&&2&&1\\
+0&&1&&2
+\end{matrix}
+\right]
+$$
+
+This A is a "band matrix".Everything stays zero outside the band.  
+
+问题？
+Suppose A is already a **triangular matrix**(upper triangular or lower triangular).Where do you see its pivots?When does Ax=b have exactly one solution for every b?  
+
+**Solution** The pivots of a triangular  matrix are already set along the main diagonal.Elimination succedds when all those numbers are nonzero.Use **back** substitution when A is upper triangular,go **forward** when A is lower triangular.  
+
+来看一个具体实栗：  
+用消元法解方程：  
+$$
+\begin{aligned}
+x+y+z&=7\\
+x+y-z&=5\\
+x-y+z&=3
+\end{aligned}
+$$
+
+![image-20220210155220557](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210155220557.png)
+
+## 2.3 Elimination Using Matrices  
+
+![image-20220210155709714](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210155709714.png)
+
+到58页
