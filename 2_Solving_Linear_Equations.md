@@ -388,9 +388,103 @@ The nonzero coefficients 1,-2,8 form a triangle.That system is solved from the b
 How did we get from the first pair of lines to the second pair?  
 **To eliminate x: Subtract a multiple of equation 1 from equation 2.**  
 
-啥玩意交pivot？主元  
+啥玩意叫pivot？主元  
 就是第一行方程中x的系数(the coefficient of x).
 
 ![image-20220209163555096](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220209163555096.png)
 
 到47页了
+
+**The pivots are on the diagonal of the triangle after elimination**  
+
+## Breakdown of Elimination  
+elimination produces the pivots that take us to the solution. But failure is possible.At some point,the method might ask us to divide by zero.The process has to stop.There might be a way to adjust and continue-or failure may be unavoidable.  
+
+三个栗子🌰
+第一个栗子
+$$
+\begin{aligned}
+x-2y&=1\\
+3x-6y&=11
+\end{aligned}
+$$
+Subtract 3 times eqn.1 from eqn.2 $\downarrow$
+$$
+\begin{aligned}
+x-2y &= 1\\
+0y &=8.
+\end{aligned}
+$$
+
+There is no solution to $0y=8$.Normally we divide the right side 8 by the second pivot,but this system has no second pivot.  
+**Zero is never allowed as a pivot!**  
+the row and column pictures show why failure was unavoidable.  
+
+![image-20220210085217622](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210085217622.png)
+if there is no solution,elimination will discover that fact by reaching an equation like $0y=8$  
+
+从行来看，两条平行线没有交点
+从列来看，two columns in the same direction.All combinations of the columns lie along a line.But the column from the right side is in a different direction(1,11).No combination of the columns can produce this right side-therefore no solution.
+
+第二个栗子 failure with infinitely many solutions.Change b=(1,11) to (1,3).
+$$
+\begin{aligned}
+x-2y &= 1\\
+3x-6y &=3
+\end{aligned}
+$$
+Subtract 3 times eqn.1 from eqn.2 $\downarrow$
+$$
+\begin{aligned}
+x-2y &= 1\\
+0y &= 0
+\end{aligned}
+$$
+$\uparrow$ still only **one pivot**
+
+Every y satisfies $0y=0$.There is really only one equation $x-2y=1$.The unknown y is "free".  
+In the row picture,the parallel lines have become the same line.Every point on that line satisfies both equations.We have a whole line of solutions.  
+In the column picture.b=(1,3) is now the same as column1.
+
+![image-20220210091438109](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210091438109.png)
+
+***
+**Failure** For n equations we do not get n pivots
+**Elimination leads to an equation** $0\neq0$ (no solution) or 0=0 (many solutions)  
+
+**Success comes with n pivots. But we may have to exchange the n equations.**
+***
+
+Elimination can go wrong in a third way- but this time it can be fixed.  
+来看个栗子🌰  
+第三个栗子  
+Temporary failure(zero in pivot).A row exchange produces two pivots:  
+permutation:  
+$$
+\begin{aligned}
+0x+2y &=4\\
+3x-2y &=5
+\end{aligned}
+$$
+exchange the two equations $\downarrow$
+$$
+\begin{aligned}
+3x-2y &=5\\
+2y &=4
+\end{aligned}
+$$
+
+The new system is already triangular.This small example is ready for backsubstitution.  
+
+okkkk，到这三个栗子完了，总结下：
+前连个栗子 are **singular**-there is no second pivot
+第三个栗子 is **nonsingular**-there is a full set of pivots and exactly one solution.  
+**Singular equations have no solution or infinitely many solutions.**  
+**Pivots must be nonzero because we have to divide by them.**  
+
+## Three Equations in Three Unknowns  
+
+消元法是谁发明的？高斯！
+Gaussian elimination  
+
+到50页了
