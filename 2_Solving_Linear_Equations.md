@@ -618,3 +618,12 @@ $$
 ![image-20220210155709714](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220210155709714.png)
 
 到58页
+
+This section gives our first example of **matrix multiplication**  
+
+we start with matrices that contain many zeros.  
+
+E acts on a vector b or a matrix A to produce a new vector Eb or a new matrix EA.  
+
+Our first example will be **"elimination matrices."** They execute the elimination steps:   
+Multiply the $j^{th}$ equation by $l_{ij}$ and subtract from $i^{th}$ equation.(This eliminates $x_j$ from equation i)注意这里，
