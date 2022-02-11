@@ -626,4 +626,102 @@ we start with matrices that contain many zeros.
 E acts on a vector b or a matrix A to produce a new vector Eb or a new matrix EA.  
 
 Our first example will be **"elimination matrices."** They execute the elimination steps:   
-Multiply the $j^{th}$ equation by $l_{ij}$ and subtract from $i^{th}$ equation.(This eliminates $x_j$ from equation i)注意这里，
+Multiply the $j^{th}$ equation by $l_{ij}$ and subtract from $i^{th}$ equation.(This eliminates $x_j$ from equation i)注意这里，  
+We need a lot of these simple matrices $E_{ij}$,one for cvery nonzero to be eliminated below the main diagonal.  
+
+Fortunately we won't see all these matrices $E_{ij}$ in later chapters. They are good examples to start with, but there are too many.They can combine into one overall matrix $E$ that takes all steps at once.The neatest way is to combine all their inverses $(E_{ij})^{-1}$ into one overall matrix $L=E^{-1}$  
+
+接下来看看：
+1. 矩阵乘法的每一步是怎样的
+2. 怎样把那些$E_{ij}$组合成E
+3. 看看每个$E_{ij}$是如何求逆的
+4. 把所有的$E_{ij}^{-1}$组成L  
+
+
+L的特性是所有的乘数$l_{ij}$都"在适当的位置？" (fall into place). Those numbers are mixed up in E(forward elimination from A to U). They are perfect in L(unding elimination,returning from U to A).Inverting puts the steps and their matrices $E_{ij}^{-1}$ in the opposite order and that prevents the mixup.  
+
+## Matrices times Vectors and Ax=b
+
+![image-20220211091108621](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211091108621.png)
+
+**A times x** is exactly chosen to yield the three equations.
+矩阵乘以向量，怎么定义它呢，怎样定义能生成三个方程就怎样定义。  
+
+Review of A times x:  
+A matrix times a vector gives a vector.
+
+![image-20220211093211989](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211093211989.png)
+
+key point:Ax=b represents the row form and also the column form of the equations.  
+
+![image-20220211093349990](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211093349990.png)
+
+Ax is a combination of the columns of A.To compute each component of Ax, we use the row form of matrix multiplication.  
+Components of Ax are dot products with rows of A.The short formula for that dot product with x uses "sigma notation"
+The first component of Ax above is $(-1)(2)+(2)(4)+(2)(-2)$
+The ith component of Ax is 
+$$
+(row\ i) \cdot x=a_{i1}x_1 +a_{i2}x_2+\cdots+a_{in}x_n.
+$$
+
+This is sometimes written with the sigma symbol as:  
+$$
+\sum_{j=1}^n a_{ij} x_j .
+$$
+$\sum$ is an instruction to add. Start with j=1 and stop with j=n. The sum begins with $a_{i1}x_1$ and ends with $a_{in}x_n$. That produces the dot product (row i)$\cdot$x.  
+
+The word "entry" for a matrix corresponds to "component" for a vector.General rule:  
+$$
+a_{ij}=A(i,j)\ is\ in\ row\ i,column\ j.
+$$
+
+爱因斯坦记法：
+Einstein shortened this even more by omitting the $\sum$. The repeated j in $a_{ij}x_j$ automatically meant addition. He also wrote the sum as $a_i^j x_j$  
+
+## The Matrix Form of One Elimination Step  
+
+怎么把某一步消元的步骤，用一个矩阵来表示？  
+We want to do that subtracton with a matrix!The same result $b_{new}=Eb$ is achieved when we multiply an "elimination marix" E times b.It subtracts $2b_1$ from $b_2$ 
+
+![image-20220211101750547](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211101750547.png)
+
+***
+The **identity matrix** has 1's on the diagonal and otherwise 0's.Then $Ib=b$ for all b.The **elementary matrix or elimination matrix** $E_{ij}$ has the extra nonzero entry $-l$ in the i,j position.Then $E_{ij}$ subtracts a multiple l of row j from row i.  
+***
+
+好了上面说的是E乘以向量（Ax=b右边的b）的情况，What about the left side?  
+**The purpose of** $\mathbf{E_{31}}$ **is to produce a zero in the (3,1) position of the matrix.**  
+
+The notation fits this purpose .Start with A. Apply E's to produce zeros below the pivots(the first E is $E_{21}$.End with a triangular U.  
+看看这些步骤的细节：  
+首先，The solution x is not changed by elimination.只是coefficient matrix变了而已。
+When we start with Ax=b and multiply by E,the result is $EAx=Eb$.
+
+## Matrix Multiplication  
+一个大问题：
+**How do we multiply two matrices?**
+
+$$
+E(Ax)=Eb\ \ \ is\ also\ (EA)x=Eb
+$$
+
+parentheses are not needed.We just write $EAx$  
+
+associative law:
+$$
+3 \times (4 \times 5)=(3\times 4)\times 5
+$$
+commutative law:
+$$
+3 \times 4 = 4\times 3
+$$
+
+在矩阵乘法中，associative law is true,commutative law is false: 
+
+![image-20220211110126120](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211110126120.png)
+
+we also should be able to multiply matrices EB a column a t a time:
+
+![image-20220211110323592](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211110323592.png)
+
+
