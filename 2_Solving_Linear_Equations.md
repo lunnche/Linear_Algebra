@@ -724,4 +724,83 @@ we also should be able to multiply matrices EB a column a t a time:
 
 ![image-20220211110323592](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211110323592.png)
 
+**The beauty of matrix multiplication is that all three approaches(rows,columns,whole matrices) come out right."**
 
+## The Matrix Pij for a Row Exchange  
+To subtract row j from row i we use $E_{ij}$.  
+To exchange or "permute" those rows we use another matrix $P_ij$(a **permutation matrix**).A row exchange is needed when zero is in the pivot position.Lower down,that pivot column may contain a nonzero.By exchanging the two rows, we have a pivot and elimination goes forward.  
+
+![image-20220211143517170](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211143517170.png)
+
+![image-20220211143603530](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211143603530.png)
+
+![image-20220211143648525](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211143648525.png)
+
+## The Augmented Matrix  
+
+Key idea: Elimination does the same row operations to A and to b. **We can include b as extra column and follow it through elimination.**.The matrix A is enlarged or "augmented" by the extra column b:
+
+![image-20220211144121619](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211144121619.png)
+
+Elimination acts on whole rows of this matrix. The left side and right side are both multiplied by E, to subtract 2 times equation 1 from equation 2. With [A b] those steps happen together.  
+
+Notice again the word "acts".This is essential.Matrices do something!The matrix A acts on x to produce b.The matrix E operates on A to give EA.  
+The whole process of elimination is a sequence of row operations.  
+
+## review of the key ideas  
+1. $Ax=x_1$ times column $1+\cdots+x_n$ times column n.And  
+$$
+(Ax)_i=\sum_{j=1}^n a_{ij} x_j.
+$$
+2. Identity matrix=I,elimination matrix=$E_{ij}$ using $l_{ij}$,exchange matrix=$P_{ij}$.
+3. Multiplying Ax=b by $E_{21}$ subtracts a multiple $l_{21}$ of equation 1 from equation 2.The number $-l_{21}$ is the (2,1) entry of the elimination matrix $E_21$
+4. For the augmented matrix [A b],that elimination step gives 
+$$
+\left[
+\begin{matrix}
+E_{21}A && E_{21}b
+\end{matrix}
+\right].
+$$
+5. When A multiplies any matrix B, it multiplies each column of B separately.  
+
+来来来一个栗子🌰
+matrix $E_{21}$ subtracts 4 times row 1 from row 2:
+$$
+E_21=
+\left[
+\begin{matrix}
+1&&0&&0\\
+-4&&1&&0\\
+0&&0&&1
+\end{matrix}
+\right]
+$$
+注意：这个矩阵$E_{21}$乘在向量左边，表示啥，表示第二行减去（第一行乘以4），如果是乘在向量右边呢？是从第一列里减去4倍的第二列。  
+类似的，对于permutation matrix,乘在左边是二三行互换，乘在右边是2、3列互换。  
+
+## Rules for Matrix Operations  
+
+![image-20220211152552015](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211152552015.png)
+
+A matrix is a rectangular array of numbers or "entries".  
+When A has m rows and n columns, it is an "m by n" matrix.  
+Matrices can be added if their shapes are the same.
+Theycan be multiplied by any constant c.  
+
+Matrices are added exactly as vectors are- one entry at a time.   
+
+The entry in row i and column j is called $a_{ij}$ or A(i,j). 
+
+**To multiply AB: If A has n columns, B must have n rows.**
+
+![image-20220211160750658](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211160750658.png)
+
+![image-20220211161018949](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220211161018949.png)
+
+矩阵乘法的第一种方法就是take the dot product of each row of A with each column of B. 
+$$
+The\ entry\ in\ row\ i\ and\ column\ j\ of\ AB\ is\ (row\ i\ of\ A)\cdot(column\ j\ of\ B).
+$$
+
+到71页了
