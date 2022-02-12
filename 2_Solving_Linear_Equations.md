@@ -804,3 +804,100 @@ The\ entry\ in\ row\ i\ and\ column\ j\ of\ AB\ is\ (row\ i\ of\ A)\cdot(column\
 $$
 
 到71页了
+
+![image-20220212093349645](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220212093349645.png)
+
+两个n维矩阵相乘，我要算多少次点乘呢？多少次乘法呢？
+If A and B are n by n,so is AB.It contains $n^2$ dot products,row of A times column of B.Each dot product needs n multiplications,so **the computation of AB uses n^3 separate multiplications**   
+
+Mathmaticians thought until recently that AB absolutely needed $2^3 = 8$ multiplications.Then somebody found a way to do it with 7(and extra additions).By breaking n by n matrics into 2 by 2 blocks,this idea also reduced the count to multiply large matrices.Instead of $n^3$ multiplications the count has now dropped to $n^{2.376}$.Maybe $n^2$ is possible?But the algorithms are so awkward that scientific computing is done the regular $n^3$ way.  
+
+inner product and outer product 
+
+$$
+\left[
+\begin{matrix}
+0\\
+1\\
+2
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+1&&2&&3
+\end{matrix}
+\right]=
+\left[
+\begin{matrix}
+0&&0&&0\\
+1&&2&&3\\
+2&&4&&6
+\end{matrix}
+\right].
+$$
+A row times a column is an **"inner" product**-that is another name for dot product.A column times a row is an **"outer" product**.These are extreme cases of matrix multiplication.  
+
+
+## The Second and Third Ways: Rows and Columns  
+In the big picture,A multiplies each column of B.The result is a column of AB.In that column,we are combining the columns of A.**Each column of AB is a combination of the columns of A.**.That is the column picture of matrix multiplication:
+**2. Matrix A tiems every column of B**
+$$
+A
+\left[
+\begin{matrix}
+b_1&& \cdots &&b_p
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+Ab_1&& \cdots &&Ab_p
+\end{matrix}
+\right].
+$$
+
+The row picture is reversed.Each row of A multiplies the whole matrix B.The result is a row of AB.**Every row of AB is a combination of the rows of B**:  
+
+**3. Every row of A times matrix B**
+$$
+\left[\mathbf{row}\ i\ \mathbf{of}\ A\right]
+\left[
+\begin{matrix}
+1&&2&&3\\
+4&&5&&6\\
+7&&8&&9
+\end{matrix}
+\right]=
+\left[\mathbf{row}\ i\ \mathbf{of}\ AB\right].
+$$
+
+We see operations in elimination (E times A).Soon we see column in $AA^{-1}=I$.
+The "row-column picture" has the dot products of rows with columns, Dot products are the usual way to multiply matrices by hand:mnp separate steps of multiply/add.
+$$
+AB=(m\times n)(n\times p)=(m\times p)\ \ mp\ \ \mathbf{dot\ products\ with\ n\ steps\ each}
+$$
+
+## The Fourth Way: Columns Multiply Rows  
+**4.Mutiply columns 1 to n of A times rows 1 to n of B.Add those matrices.**  
+
+![image-20220212170131258](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220212170131258.png)
+
+![image-20220212170234358](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220212170234358.png)
+
+Column k of A multiplies row k of B.That gives a matrix(not just a number).Then you add those matrices for k=1,2,...,n to produce AB.  
+If AB is (m by n)(n by p)then n matrices will be (column)(row).They are all m by p.This uses the same mnp steps as in the dot products-but in a new order.  
+
+## The Laws For Matrix Operations  
+A+B =B+A   (commutative law)
+c(A+B) = cA+cB (distributive law)
+A+(B+C)=(A+B)+C (associative law).  
+
+$$
+AB \neq BA\ \ \ \ \ (\mathbf{the\ commutative\ "law"\ is\ usually\ broken})\\
+A(B+C)=AB+AC\ \ \ \ \ (\mathbf{distributive\ law\ from\ the\ left} )\\
+(A+B)C=AC+BC\ \ \ \ \ (\mathbf{distributive\ law\ from\ the\ right})\\
+A(BC)=(AB)C\ \ \ \ \ (\mathbf{associative\ law\ for\ ABC})(parentheses\ not\ needed)
+
+$$
+
+看到73页
