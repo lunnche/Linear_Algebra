@@ -1142,4 +1142,16 @@ Multiply $EE^{-1}$ to get the identity matrix I.Also multiply $E^{-1}E$ to get I
 ![image-20220218144425204](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218144425204.png)
 
 ## Calculating $A^{-1}$ by Gauss-Jordan Elimination
-$A^{-1}$ might not be explicitly needed. The equation 
+$A^{-1}$ might not be explicitly needed. The equation $Ax=b$ is solved by $x=A^{-1}b$ .But it is not necessary or efficient to compute $A^{-1}$ and multiply it times b.Elimination goes directly goes directly to x. 
+
+消元法也能算逆矩阵.The Gauss-Jordan idea is to solve $AA^{-1}=I$,finding each column of $A^{-1}$.
+
+下面是高斯若尔当消元法具体步骤：
+
+![image-20220218152928877](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218152928877.png)
+
+![image-20220218152956412](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218152956412.png)
+
+**If A is invertible and upper triangular,so is $A^{-1}$.**Start with $AA^{-1}=I$.
+
+
