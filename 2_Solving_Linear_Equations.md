@@ -897,7 +897,249 @@ AB \neq BA\ \ \ \ \ (\mathbf{the\ commutative\ "law"\ is\ usually\ broken})\\
 A(B+C)=AB+AC\ \ \ \ \ (\mathbf{distributive\ law\ from\ the\ left} )\\
 (A+B)C=AC+BC\ \ \ \ \ (\mathbf{distributive\ law\ from\ the\ right})\\
 A(BC)=(AB)C\ \ \ \ \ (\mathbf{associative\ law\ for\ ABC})(parentheses\ not\ needed)
-
 $$
 
 看到73页
+
+When A and B are not square,AB is a different size from BA.these matrices can't be equal-even if both multiplication are allowed.  
+
+对方阵，很多情况，AB也不等于BA
+$$
+AB=
+\left[
+\begin{matrix}
+0&&0\\
+1&&0
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+0&&1\\
+0&&0
+\end{matrix}
+\right]=
+\left[
+\begin{matrix}
+0&&0\\
+0&&1
+\end{matrix}
+\right]\ \ but\ \ 
+BA=
+\left[
+\begin{matrix}
+0&&1\\
+0&&0
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+0&&0\\
+1&&0
+\end{matrix}
+\right]=
+\left[
+\begin{matrix}
+1&&0\\
+0&&0
+\end{matrix}
+\right].
+$$
+
+$$
+AI=IA
+$$
+
+All square matrices commute with I and also with cI. Only these matrices cI commute with all other matrices.  
+
+Look at the special case when A=B=C=square matrix.Then (A times $A^2$) is equal to ($A^2$ times A).The product in either order is $A^3$. The matrix powers $A^p$ follow the same rules as numbers:
+
+![image-20220218083342934](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218083342934.png)
+
+A has a "-1 power"-which is the inverse marix $A^{-1}$.The $A^0=I$ is the identity matrix in analogy with $2^0=1$.
+
+For a number, $a^{-1}$ is $1/a$ . For a matrix, the inverse is written $A^{-1}$ (It is not I/A,except in MATLAB.) 
+
+除了a=0，每个数都有倒数inverse.矩阵可不是每个都有inverse.  
+
+## Block Matrices and Block Multiplication  
+matrices can be cut into blocks(which are smaller matrices).
+
+![image-20220218093050464](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218093050464.png)
+
+If B is also 4 by 6 and the block sizes match,you can add A+B a block at a time.  
+
+We have seen block matrices befor. The right side vector b was placed next to A in the "aumented matrix".Then $\left[\begin{matrix}A\ b\end{matrix}\right]$ has two blocks of different sizes.Multiplying by an elimination matrix gave $\left[\begin{matrix} EA&&Eb\end{matrix}\right]$.No problem to multiply blocks times blocks,wehn therir shapes permit.  
+
+***
+**Block multiplication** If blocks of A can multiply blocks of B,then block multiplication of AB is allowed.Cuts between columns of A match cuts between rows of B.
+$$
+\left[
+\begin{matrix}
+A_{11}&&A_{12}\\
+A_{21}&&A_{22}
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+B_{11}\\
+B_{21}
+\end{matrix}
+\right]=
+\left[
+\begin{matrix}
+A_{11}B_{11}+A_{12}B_{21}\\
+B_{21}B_{11}+A_{22}B_{21}
+\end{matrix}
+\right].
+$$
+
+***
+
+This equation is the same as if the blocks were numbers(which are 1 by 1 blocks).We are careful to keep A's in front of B's,because BA can be different.  
+
+**Main point** When matrices split into blocks,it is often simpler to see how they act. The block matrix of I's above is much clearer than the original 4 by 6 matrix.  
+
+来看一个重要的🌰
+
+Let the blocks of A be its n columns. Let the blocks of B be its n rows.Then block multiplication AB adds up **columns times rows**:
+
+![image-20220218094709424](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218094709424.png)
+
+这就是矩阵乘法的第四种做法$\uparrow$  
+
+看个例子
+
+![image-20220218094922902](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218094922902.png)
+
+summary: the usual way, row times columns,gives four dot products(8 multiplications).The new way, columns times rows, gives two full matrices (the same 8 multiplications).
+
+
+$$
+\LARGE
+舒尔补码
+$$
+妹整明白，回头再看
+
+![image-20220218100510353](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218100510353.png)
+
+![image-20220218100724099](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218100724099.png)
+
+$$
+\LARGE
+无向图邻接矩阵
+$$
+没整明白，回头再看  
+
+![image-20220218101609194](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218101609194.png)
+
+## Inverse Matrices  
+
+![image-20220218102030879](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218102030879.png)
+
+Suppose A is a square matrix.We look for an "inverse matrix" $A^{-1}$ of the same size, such that $A^{-1}$ times A equals I.Whatever A does,$A^{-1}$ undoes. Their product is the identity matrix-which does nothing to a vector,so $A^{-1}Ax=x$.But $A^{-1}$ might not exist.  
+
+$A^{-1}$ is called "A inverse"
+
+***
+$\mathbf{DEFINITION}$ The matrix A is invertible if there exists a matrix $A^{-1}$ that "inverts" A:Two-sided inverse
+$$
+A^{-1}A=I\ \ and\ \ AA^{-1}=I.
+$$
+***
+
+Not all matrices have inverse.  
+here are 6 notes about $A^{-1}$  
+**note1**
+The inverse exists if and only if elimination produces n pivots(row exchanges are allowed).Elimination solves Ax=b without explicitly using the matrix $A^{-1}$.
+
+**note2**
+The matrix A cannot have two different inverses.Suppose BA=I and also AC=I. Then B=C,according to this "proof parentheses":
+$$
+B(AC)=(BA)C\ \ gives\ \ BI=IC\ \ or\ \ B=C.
+$$
+This shows that a left-inverse B(multiplying from the left) and a right-inverse C (multiplying A from the right to give AC=I)must be the same matrix.  
+
+**note3**
+If A is invertible,the one and only solution to Ax=b is x=$A^{-1}$b:
+
+$$
+\mathbf{Multiply}\ \ Ax=b\ \ by\ \ A^{-1}.\ \ Then\ \  x=A^{-1}Ax=A^{-1}b
+$$
+
+**note4**
+Suppose there is a nonzero vector x such that Ax=0. Then A cannot have an inverse. No matrix can bring 0 back to x.  
+If A is invertible,then Ax=0 can only have the zero solution $x=A^{-1}0=0$
+
+**note5**
+A 2 by 2 matrix is invertible if and only if ad-bc is not zero:
+$$
+\mathbf{2\ by\ 2\ Inverse:}\ \ \ 
+\left[
+\begin{matrix}
+a&&b\\
+c&&d
+\end{matrix}
+\right]^{-1}=
+\frac{1}{ad-bc}
+\left[
+\begin{matrix}
+d&&-b\\
+-c&&a
+\end{matrix}
+\right].
+$$
+This number ad-bc is the **determinant** of A. A matrix is invertible if its determinant is not zero.The test for n pivots is usually decided before the determinant appears.  
+
+**note6**
+A diagonal matrix has an inverse provided no diagonal entries are zero:
+
+![image-20220218140511619](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218140511619.png)
+
+## The Inverse of a Product AB  
+For two nonzero numbers a and b,the sum a+b might or might not be invertible.The numbers a=3 and b=-3 have inverse $\frac{1}{3}$ and $-\frac{1}{3}$.Their sum a+b=0 has no inverse.But the product ab=-9 does have an inverse,which is $\frac{1}{3}$ times $-\frac{1}{3}$.  
+
+For two matrices A and B,the situation is similar. It is hard to say much about the invertibility of A+B.But the product AB has an inverse, if and only if the two factors A and B are separately invertible (and the same size).The important point is that $A^{-1}$ and $B^{-1}$ come in **reverse order**:
+
+***
+If A and B are invertible then so is AB.The inverse of a product AB is 
+$$
+(AB)^{-1}=B^{-1}A^{-1}.
+$$
+***
+$B^{-1}A^{-1}$ illustrates a basic rule of mathematics:Inverses come in reverse order.It is also common sense: If you put on socks and then shoes,the first to be taken off are the __ The same reverse order applies to three or more matrices:
+$$
+\mathbf{Reverse\ \ \ order}\ \ \ (ABC)^{-1}=C^{-1}B^{-1}A^{-1}.
+$$
+
+看看🌰
+**Inverse of an elimination matrix.** If E subtracts 5 times row 1 from row 2, then $E^{-1}$ adds 5 times row 1 to row2:
+$$
+\mathbf{E\ subtracts\ E^{-1}\ adds}\\
+E=
+\left[
+\begin{matrix}
+1&&0&&0\\
+-5&&1&&0\\
+0&&0&&1
+\end{matrix}
+\right]\ \ \ and\ \ \ 
+E^{-1}=
+\left[
+\begin{matrix}
+1&&0&&0\\
+5&&1&&0\\
+0&&0&&1
+\end{matrix}
+\right].
+$$
+
+Multiply $EE^{-1}$ to get the identity matrix I.Also multiply $E^{-1}E$ to get I.We are adding and subtracting the same 5 times row 1.If AC=I then automatically CA=I.
+
+**For square matrices, an inverse on one side is automatically an inverse on the other side.**
+
+有一个🌰
+
+![image-20220218144425204](https://raw.githubusercontent.com/lunnche/picgo-image/main/image-20220218144425204.png)
+
+## Calculating $A^{-1}$ by Gauss-Jordan Elimination
+$A^{-1}$ might not be explicitly needed. The equation 
